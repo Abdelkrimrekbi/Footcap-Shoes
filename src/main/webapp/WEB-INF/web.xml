@@ -52,6 +52,12 @@
   	<description></description>
   	<servlet-class>Controller.ContactEmail</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ContactServlet</servlet-name>
+  	<display-name>ContactServlet</display-name>
+  	<description></description>
+  	<servlet-class>Controller.ContactServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>RegisterController</servlet-name>
   	<url-pattern>/RegisterController</url-pattern>
@@ -83,5 +89,9 @@
   <servlet-mapping>
   	<servlet-name>ContactEmail</servlet-name>
   	<url-pattern>/ContactEmail</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ContactServlet</servlet-name>
+  	<url-pattern>/ContactServlet</url-pattern>
   </servlet-mapping>
 </web-app>

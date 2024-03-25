@@ -114,7 +114,7 @@ if(cart_list!=null){
 
           
           <li class="navbar-item">
-            <a href="contact.jsp" class="navbar-link">Contact</a>
+            <a href="Views/contact.jsp" class="navbar-link">Contact</a>
           </li>
 
         </ul>
