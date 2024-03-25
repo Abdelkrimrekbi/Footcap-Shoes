@@ -66,7 +66,7 @@
     <script>
         // JavaScript function to go back
         function goBack() {
-            window.history.back();
+            window.history.back() ;
         }
     </script>
 </body>
