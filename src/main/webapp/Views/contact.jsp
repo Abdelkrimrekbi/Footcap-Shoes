@@ -3,7 +3,7 @@
 <%
 	String message = null;
 	String status = null;
-	if ("POST".equalsIgnoreCase(request.getMethod()) && request.getParameter("submit") != null) {
+	if (request.getParameter("submit") != null) {
 		ContactEmail javaEmail = new ContactEmail();
 		javaEmail.setMailServerProperties();
 		String emailSubject = "Contact Form using Java JSP GMail";
@@ -25,11 +25,12 @@
 			javaEmail.sendEmail();
 			status = "success";
 			message = "Email sent Successfully!";
+			response.sendRedirect("contact.jsp");
 		} catch (MessagingException me) {
 			status = "error";
 			message = "Error in Sending Email!";
 		}
-		request.setAttribute("submit", null);
+	
 	}
 %>
 <!DOCTYPE html>

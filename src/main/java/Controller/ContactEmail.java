@@ -50,4 +50,6 @@ public class ContactEmail {
 		transport.sendMessage(emailMessage, emailMessage.getAllRecipients());
 		transport.close();
 	}
+	
+	
 }
