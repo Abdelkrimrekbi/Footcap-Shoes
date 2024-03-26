@@ -93,33 +93,62 @@ if(cart_list!=null){
         <a href="#" class="logo">
           <img src="<%= request.getContextPath() %>/images/logo.svg" width="190" height="50" alt="Footcap logo">
         </a>
+      
 
         <ul class="navbar-list">
+     <%
+     Object usernameAttribute = session.getAttribute("username");
+     if (usernameAttribute != null && !usernameAttribute.equals("admin")) {
+	%>
 
           <li class="navbar-item">
             <a href="#" class="navbar-link">Home</a>
           </li>
-
+<!--  -->
           <li class="navbar-item">
             <a href="#About" class="navbar-link">About</a>
           </li>
+           <%
+          }
+          %>
+          
+         
+
+
 
           <li class="navbar-item">
             <a href="#Products" class="navbar-link">Products</a>
           </li>
+          
+          
 
+  <%
+  
+  if (usernameAttribute != null && !usernameAttribute.equals("admin")) {
+	%>
           <li class="navbar-item">
             <a href="#Shop" class="navbar-link">Shop</a>
           </li>
 
           
           <li class="navbar-item">
+<<<<<<< HEAD
             <a href="Views/contact.jsp" class="navbar-link">Contact</a>
+=======
+            <a href="./contact.jsp" class="navbar-link">Contact</a>
+>>>>>>> karim
           </li>
 
         </ul>
+        <%
+          }
+          %>
 
         <ul class="nav-action-list">
+         <%
+         
+         if (usernameAttribute != null && !usernameAttribute.equals("admin")) {
+	%>
 
           <li>
             <button class="nav-action-btn">
@@ -128,7 +157,10 @@ if(cart_list!=null){
               <span class="nav-action-text" id="search-btn">Search</span>
             </button>
           </li>
-
+           <%
+          }
+          %>
+ 
          <li>
     <a href="<%= request.getContextPath() %>/logout" class="nav-action-btn"> <!-- Assuming logout.jsp handles logout -->
         <ion-icon name="exit-outline" aria-hidden="true"></ion-icon>
@@ -136,16 +168,18 @@ if(cart_list!=null){
     </a>
       </li>
          
-
+  <%
+  if (usernameAttribute != null && !usernameAttribute.equals("admin")) {
+	%>
           <li>
           <a href="#">
             <button class="nav-action-btn">
               <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
-
               <span class="nav-action-text">Wishlist</span>
             </button>
             </a>
           </li>
+         
 
          <li>
   <a href="<%= request.getContextPath() %>/Views/cart.jsp">
@@ -156,28 +190,43 @@ if(cart_list!=null){
     </button>
 </a>
    </li>
+   <%
+          }
+          %>
    
-    <li>
-        
-          </li>
-           <li>
-        
-          </li>
-
-
+    
 <li>
-    <a href="#" class="nav-action-btn" style="display: inline-block; padding: 8px 15px; margin-right: 10px; background-color: #FF8674; color: #fff; text-decoration: none; border-radius: 5px; transition: background-color 0.3s ease;">
-      <%= session.getAttribute("username") %>
+    <a href="#" class="nav-action-btn"> <!-- Assuming logout.jsp handles logout -->
+        <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+        <span class="nav-action-text">Profile</span>
     </a>
-</li>
+      </li> 
+       <%
+       if (usernameAttribute != null && usernameAttribute.equals("admin")) {
+	
+	%> 
+              
+      <li>
+          <a href="Views/addProduct.jsp">
+            <button class="nav-action-btn">
+              <ion-icon name="bag-add-outline" aria-hidden="true"></ion-icon>
+              <span class="nav-action-text">Add Products</span>
+            </button>
+            </a>
+          </li>
+      <%
+          }
+          %>
 
          
           
         </ul>
-        <form action="" class="search-form">
+        
+        <!-- <form action="" class="search-form">
           <input type="search" id="search-box" placeholder="search here...">
           <label for="search-box" class="fas fa-search"></label>
-        </form>
+        </form> -->
+        
 
       </nav>
        
@@ -195,7 +244,9 @@ if(cart_list!=null){
       <!-- 
         - #HERO
       -->
-
+ <%
+ if (usernameAttribute != null && !usernameAttribute.equals("admin")) {
+	%>
       <section id="Home" class="section hero" style="background-image: url('<%= request.getContextPath() %>/images/hero-banner.png')">
         <div class="container">
 
@@ -272,7 +323,9 @@ if(cart_list!=null){
         </div>
       </section>
 
-
+ <%
+          }
+          %>
 
 
 
@@ -363,6 +416,9 @@ if(cart_list!=null){
           </ul>
 
         </div>
+ <%
+ if (usernameAttribute != null && !usernameAttribute.equals("admin")) {
+	%>
       </section>
 
       <!-- 
@@ -714,13 +770,19 @@ if(cart_list!=null){
 
         </div>
       </section>
-
+ <%
+          }
+          %>
+          
 
   <!-- 
     - #FOOTER
   -->
 
   <footer id="Contact" class="footer">
+  <%
+  if (usernameAttribute != null && !usernameAttribute.equals("admin")) { 
+	%>
 
     <div class="footer-top section">
       <div class="container">
@@ -907,6 +969,9 @@ if(cart_list!=null){
 
       </div>
     </div>
+    <%
+}
+	%>
 
     <div class="footer-bottom">
       <div class="container">

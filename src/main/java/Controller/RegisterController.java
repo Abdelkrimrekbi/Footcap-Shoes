@@ -57,7 +57,7 @@ public class RegisterController extends HttpServlet {
 			     dispatcher.forward(request, response); 
 				 
 			 }else {
-				 response.sendRedirect("Views/login.jsp");
+				 response.sendRedirect("Views/llogin.jsp");
 			 }
 			 
 			

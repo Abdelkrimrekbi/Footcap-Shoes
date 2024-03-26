@@ -58,7 +58,7 @@ public class login extends HttpServlet {
 			ResultSet rs =pst.executeQuery();
 			if(rs.next()) {
 				 HttpSession session = request.getSession();
-				 
+				 System.out.println(" nvalue "+email);
 				  session.setAttribute("username", rs.getString("username"));
 				  session.setAttribute("email", rs.getString("email"));
 				  session.setAttribute("phone", rs.getString("phone"));

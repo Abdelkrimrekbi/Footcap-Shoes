@@ -1,6 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="Controller.ContactEmail"%>
 <%@ page import="javax.mail.MessagingException"%>
 <%
+<<<<<<< HEAD
 	String message = null;
 	String status = null;
 	if ("POST".equalsIgnoreCase(request.getMethod()) && request.getParameter("submit") != null) {
@@ -31,6 +34,26 @@
 		}
 		request.setAttribute("submit", null);
 	}
+=======
+    String message = null;
+    String status = null;
+    if (request.getParameter("submit") != null) {
+        ContactEmail javaEmail = new ContactEmail();
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String messageContent = request.getParameter("message");
+        try {
+            javaEmail.sendEmail(name, email, messageContent);
+            status = "success";
+            message = "Email sent Successfully!";
+            response.sendRedirect("contact.jsp?status=" + status + "&message=" + java.net.URLEncoder.encode(message, "UTF-8"));
+            return; // Added return to prevent further execution
+        } catch (MessagingException me) {
+            status = "error";
+            message = "Error in Sending Email!";
+        }
+    }
+>>>>>>> karim
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +81,11 @@
                     </form>
                 </div>
                 <div class="form-img">
+<<<<<<< HEAD
                     <img src="<%= request.getContextPath() %>/img/bg1.png" alt="">
+=======
+                    <img src="<%= request.getContextPath() %>/img/bg12.png" alt="">
+>>>>>>> karim
                 </div>
             </div>
         </div>
@@ -70,4 +97,8 @@
         }
     </script>
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> karim

@@ -11,7 +11,10 @@ C:\eclipse-workspace\Footcap-Shoes\src\main\java\classdb\productdb.java
 C:\eclipse-workspace\Footcap-Shoes\src\main\java\Connection_JBDC\MyConnection.java
 C:\eclipse-workspace\Footcap-Shoes\src\main\java\Model_Beans\cart.java
 C:\eclipse-workspace\Footcap-Shoes\src\main\java\Model_Beans\databaseConnection.java
+<<<<<<< HEAD
 C:\eclipse-workspace\Footcap-Shoes\src\main\java\Controller\ContactServlet.java
+=======
+>>>>>>> karim
 C:\eclipse-workspace\Footcap-Shoes\src\main\java\Controller\AddToCart.java
 C:\eclipse-workspace\Footcap-Shoes\src\main\java\Controller\login.java
 C:\eclipse-workspace\Footcap-Shoes\src\main\java\Controller\ContactEmail.java
