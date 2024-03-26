@@ -52,6 +52,12 @@
   	<description></description>
   	<servlet-class>Controller.ContactEmail</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>AddProduct</servlet-name>
+  	<display-name>AddProduct</display-name>
+  	<description></description>
+  	<servlet-class>Controller.AddProduct</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>RegisterController</servlet-name>
   	<url-pattern>/RegisterController</url-pattern>
@@ -83,5 +89,9 @@
   <servlet-mapping>
   	<servlet-name>ContactEmail</servlet-name>
   	<url-pattern>/ContactEmail</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AddProduct</servlet-name>
+  	<url-pattern>/AddProduct</url-pattern>
   </servlet-mapping>
 </web-app>

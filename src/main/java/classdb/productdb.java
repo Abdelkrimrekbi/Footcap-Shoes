@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import Connection_JBDC.MyConnection;
 import Model_Beans.cart;
 import Model_Beans.products;
 
@@ -23,9 +24,10 @@ public class productdb {
 		List<products> product=new ArrayList<>();
 		   try {
 			 query="select * from products";  
-			 System.out.println("requite:::::::::::"+query);
+			 
 			pst=this.con.prepareStatement(query);
 			rs=pst.executeQuery();
+			System.out.println("requite:::::::::::"+rs);
 			while(rs.next()) {
 				products row =new products();  
 				row.setId(rs.getInt("id"));
@@ -86,6 +88,22 @@ public class productdb {
 		}
 		
 		return sum;
+	}
+	public boolean insertProduct(products newProduct) {
+	    try {
+	        String query = "INSERT INTO products (name, category, price, image) VALUES (?, ?, ?, ?)";
+	        PreparedStatement pst = this.con.prepareStatement(query);
+	        pst.setString(1, newProduct.getName());
+	        pst.setString(2, newProduct.getCategory());
+	        pst.setDouble(3, newProduct.getPrice());
+	        pst.setString(4, newProduct.getImage());
+
+	        int rowsAffected = pst.executeUpdate();
+	        return rowsAffected > 0;
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        return false;
+	    }
 	}
 
 }

@@ -116,8 +116,16 @@ if(cart_list!=null){
         </ul>
 
         <ul class="nav-action-list">
+         <!--
+          <li>
+           <form action="" class="nav-action-btn">
+          <input type="search" id="search-box" placeholder="search here...">
+          <label for="search-box" class="class="nav-action-btn"></label>
+        </form>
+          </li>  -->
 
           <li>
+          
             <button class="nav-action-btn">
               <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
 
@@ -132,6 +140,7 @@ if(cart_list!=null){
               <span class="nav-action-text">Login / Register</span>
             </a>
           </li>
+          
 
           <li>
           <a href="#">
@@ -147,7 +156,7 @@ if(cart_list!=null){
   <a href="Views/cart.jsp">
     <button class="nav-action-btn">
         <ion-icon name="bag-outline" aria-hidden="true"></ion-icon>
-        <data class="nav-action-text" value="318.00">Basket: <strong>DH318.00</strong></data>
+        <data class="nav-action-text" value="318.00">Basket: <strong>318.00 DH</strong></data>
         <span class="nav-action-badge" aria-hidden="true"><%= cartSize %></span>
     </button>
 </a>
@@ -155,10 +164,7 @@ if(cart_list!=null){
          
 
         </ul>
-        <form action="" class="search-form">
-          <input type="search" id="search-box" placeholder="search here...">
-          <label for="search-box" class="fas fa-search"></label>
-        </form>
+        
 
       </nav>
 
@@ -322,7 +328,7 @@ if(cart_list!=null){
                         <a href="#"><%=p.getName() %></a>
                       </h3>
 
-                      <data class="card-price" value="170.85">DH<%=p.getPrice() %></data>
+                      <data class="card-price" value="170.85"><%=p.getPrice() %> DH</data>
 
                     </div>
 
@@ -422,7 +428,7 @@ if(cart_list!=null){
                       <a href="#">Running Sneaker Shoes</a>
                     </h3>
 
-                    <data class="card-price" value="180.85">DH180.85</data>
+                    <data class="card-price" value="180.85">180.85 DH</data>
 
                   </div>
 
@@ -477,7 +483,7 @@ if(cart_list!=null){
                       <a href="#">Leather Mens Slipper</a>
                     </h3>
 
-                    <data class="card-price" value="190.85">190.85</data>
+                    <data class="card-price" value="190.85">190.85 DH</data>
 
                   </div>
 
@@ -534,7 +540,7 @@ if(cart_list!=null){
                       <a href="#">Simple Fabric Shoe</a>
                     </h3>
 
-                    <data class="card-price" value="160.85">DH160.85</data>
+                    <data class="card-price" value="160.85">160.85 DH</data>
 
                   </div>
 
@@ -591,7 +597,7 @@ if(cart_list!=null){
                       <a href="#">Air Jordan 7 Retro </a>
                     </h3>
 
-                    <data class="card-price" value="170.85">DH170.85 <del>DH200.21</del></data>
+                    <data class="card-price" value="170.85">170.85 DH<del>200.21 DH</del></data>
 
                   </div>
 
@@ -629,7 +635,7 @@ if(cart_list!=null){
                   <h3 class="h4 card-title">Free Shiping</h3>
 
                   <p class="card-text">
-                    All orders over <span>DH150</span>
+                    All orders over <span>150 DH</span>
                   </p>
                 </div>
 

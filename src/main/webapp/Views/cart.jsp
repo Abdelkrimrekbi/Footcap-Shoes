@@ -1,20 +1,16 @@
-<%@page import="java.util.List"%>
-<%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="Model_Beans.databaseConnection" %>
-<%@ page import="classdb.productdb" %>
-<%@ page import="Model_Beans.cart" %>
 
-<%
-
-if (session.getAttribute("username")==null){
-	response.sendRedirect("login.jsp");
-}
-%>
+<%@page import="java.util.*"%>
+<%@page import="Model_Beans.products"%>
+<%@page import="Model_Beans.cart"%>
+<%@page import="Model_Beans.databaseConnection"%>
+<%@page import="classdb.productdb"%>
+<%@page import="Controller.AddToCart"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>  
+    <%@ page import="java.util.ArrayList" %>
 <%
 ArrayList<cart> cart_list = (ArrayList<cart>) session.getAttribute("cart-list");
-
+int cartSize = (cart_list != null) ? cart_list.size() : 0;
 List<cart> cartPro = null;
 double total = 0;
 if (cart_list != null) {
@@ -22,90 +18,184 @@ if (cart_list != null) {
     total = db.getTotalPrice(cart_list);
     cartPro = db.getCartProcducts(cart_list);
 }
+%> 
+<%
+if (session.getAttribute("username")==null){
+	response.sendRedirect("login.jsp");
+}
 %>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<meta charset="UTF-8">
+  <meta charset="UTF-8">
+  
+ 
+  <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shopping Cart</title>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/CSS/footer.css">
 <link rel="stylesheet" href="<%= request.getContextPath() %>/CSS/cartA.css">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
 <link rel="shortcut icon" href="<%= request.getContextPath() %>/favicon.svg" type="image/svg+xml">
     <!-- test -->
+  <!-- 
+    - favicon
+  -->
+  <link rel="shortcut icon" href="<%= request.getContextPath() %>/favicon.svg" type="image/svg+xml">
 
-  
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="<%= request.getContextPath() %>/CSS/stylehome.css">
+
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet">
+
+  <!-- 
+    - preload banner
+  -->
+  <link rel="preload" href="<%= request.getContextPath() %>/images/hero-banner.png" as="image">
+
 </head>
-<body>
-<!-- HEADER -->
- <header class="header" data-header>
-    <div class="containerr">
 
-        <div class="overlay" data-overlay></div>
+<body id="top">
 
-        <a href="#" class="logo">
-            <img src="<%= request.getContextPath() %>/images/logo.svg" width="160" height="50" alt="Footcap logo">
-        </a>
+  <!-- 
+    - #HEADER
+  -->
 
-        <button class="nav-open-btn" data-nav-open-btn aria-label="Open Menu">
-            <ion-icon name="menu-outline"></ion-icon>
+  <header class="header" data-header>
+    <div class="container">
+
+      <div class="overlay" data-overlay></div>
+
+      <a href="#" class="logo">
+        <img src="<%= request.getContextPath() %>/images/logo.svg" width="160" height="50" alt="Footcap logo">
+      </a>
+
+      <button class="nav-open-btn" data-nav-open-btn aria-label="Open Menu">
+        <ion-icon name="menu-outline"></ion-icon>
+      </button>
+
+      <nav class="navbar" data-navbar>
+
+        <button class="nav-close-btn" data-nav-close-btn aria-label="Close Menu">
+          <ion-icon name="close-outline"></ion-icon>
         </button>
 
-        <nav class="navbar" data-navbar>
+        <a href="#" class="logo">
+          <img src="<%= request.getContextPath() %>/images/logo.svg" width="190" height="50" alt="Footcap logo">
+        </a>
 
-            <button class="nav-close-btn" data-nav-close-btn aria-label="Close Menu">
-                <ion-icon name="close-outline"></ion-icon>
-            </button>
+        <ul class="navbar-list">
 
-            <a href="#" class="logo">
-                <img src="<%= request.getContextPath() %>/images/logo.svg" width="190" height="50" alt="Footcap logo">
-            </a>
+          <li class="navbar-item">
+            <a href="home.jsp" class="navbar-link">Home</a>
+          </li>
+<!-- 
+          <li class="navbar-item">
+            <a href="#About" class="navbar-link">About</a>
+          </li>
 
-            <ul class="navbar-list">
+          <li class="navbar-item">
+            <a href="#Products" class="navbar-link">Products</a>
+          </li>
 
-                <li class="navbar-item">
-                    <a href="home.jsp" class="navbar-link">Home</a>
-                </li>
-
-            </ul>
-
-            <ul class="nav-action-list">
-
-                
-
-                <li>
-                </li>
-                <li>
-                </li>
-
-                <li>
-                    <a href="#" class="nav-action-btn" style="display: inline-block; padding: 8px 15px; margin-right: 10px; background-color: #FF8674; color: #fff; text-decoration: none; border-radius: 5px; transition: background-color 0.3s ease;">
-                        <%= session.getAttribute("username") %>
-                    </a>
-                </li>
-
-            </ul>
-            
-            <form action="" class="search-form">
-                <input type="search" id="search-box" placeholder="search here...">
-                <label for="search-box" class="fas fa-search"></label>
-            </form>
+          <li class="navbar-item">
+            <a href="#Shop" class="navbar-link">Shop</a>
+          </li>
+ -->
           
-        </nav>
- 
-    </div>
+          <li class="navbar-item">
+            <a href="contact.jsp" class="navbar-link">Contact</a>
+          </li>
+          
+          
+
+        </ul>
+
+        <ul class="nav-action-list">
+
+          <li>
+            <button class="nav-action-btn">
+              <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+
+              <span class="nav-action-text" id="search-btn">Search</span>
+            </button>
+          </li>
+
+         <li>
+    <a href="<%= request.getContextPath() %>/logout" class="nav-action-btn"> <!-- Assuming logout.jsp handles logout -->
+        <ion-icon name="exit-outline" aria-hidden="true"></ion-icon>
+        <span class="nav-action-text">Log out</span>
+    </a>
+      </li>
+         
+
+          <li>
+          <a href="#">
+            <button class="nav-action-btn">
+              <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
+
+              <span class="nav-action-text">Wishlist</span>
+            </button>
+            </a>
+          </li>
+
+         <li>
+  <a href="<%= request.getContextPath() %>/Views/cart.jsp">
+    <button class="nav-action-btn">
+        <ion-icon name="bag-outline" aria-hidden="true"></ion-icon>
+        <data class="nav-action-text" value="318.00">Basket: <strong>DH318.00</strong></data>
+        <span class="nav-action-badge" aria-hidden="true"><%= cartSize %></span>
+    </button>
+</a>
+   </li>
    
-</header>
+   
+<li>
+    <a href="#" class="nav-action-btn"> <!-- Assuming logout.jsp handles logout -->
+        <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+        <span class="nav-action-text">Profile</span>
+    </a>
+      </li>
 
-<!-- CENTRE CART -->
+         
+          
+        </ul>
+       <!--  <form action="" class="search-form">
+          <input type="search" id="search-box" placeholder="search here...">
+          <label for="search-box" class="fas fa-search"></label>
+        </form>  -->
+
+      </nav>
+       
+   
+    </div>
+  </header>
 
 
-  <!-- CENTRE CART -->
 
-<div class="container center-section">
+
+
+
+
+      <!-- 
+        - #PRODUCT
+      -->
+
+      <section>
+      <div class="container center-section">
   <div class="container">
     <div class="checkout">
         <h3>Total Price: DH <%= total %></h3>
@@ -142,9 +232,23 @@ if (cart_list != null) {
         } %>
     </div>
   </div>
-  </div>
-  <!-- SECSSion -->
-   <section class="section service">
+  </div></section>
+
+      <!-- 
+        - #SPECIAL
+      -->
+
+    
+
+
+
+
+
+      <!-- 
+        - #SERVICE
+      -->
+
+      <section class="section service">
         <div class="container">
 
           <ul class="service-list">
@@ -225,16 +329,53 @@ if (cart_list != null) {
 
         </div>
       </section>
-  
-  <!-- FOOTER -->
-  
-<div class="footer">
-<footer id="Contact" class="footer">
+
+
+  <!-- 
+    - #FOOTER
+  -->
+
+  <footer id="Contact" class="footer">
 
     <div class="footer-top section">
       <div class="container">
 
-       
+        <div class="footer-brand">
+
+          <a href="#" class="logo">
+            <img src="<%= request.getContextPath() %>/images/logo.svg" width="160" height="50" alt="Footcap logo">
+          </a>
+
+          <ul class="social-list">
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-facebook"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-twitter"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-pinterest"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-linkedin"></ion-icon>
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
         <div class="footer-link-box">
 
           <ul class="footer-list">
@@ -393,9 +534,33 @@ if (cart_list != null) {
     </div>
 
   </footer>
-  </div>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js"></script>
+
+
+
+  <!-- 
+    - #GO TO TOP
+  -->
+
+  <a href="#top" class="go-top-btn" data-go-top>
+    <ion-icon name="arrow-up-outline"></ion-icon>
+  </a>
+
+
+
+
+
+ 
+  <script src="JavaScript/script.js"></script>
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script src="mixitup.min.js"></script>
+
 </body>
+
 </html>
