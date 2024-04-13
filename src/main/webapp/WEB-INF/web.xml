@@ -58,6 +58,7 @@
   	<description></description>
   	<servlet-class>Controller.AddProduct</servlet-class>
   </servlet>
+  
   <servlet-mapping>
   	<servlet-name>RegisterController</servlet-name>
   	<url-pattern>/RegisterController</url-pattern>
@@ -94,4 +95,5 @@
   	<servlet-name>AddProduct</servlet-name>
   	<url-pattern>/AddProduct</url-pattern>
   </servlet-mapping>
+ 
 </web-app>

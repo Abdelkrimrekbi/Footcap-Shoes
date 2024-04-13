@@ -52,7 +52,7 @@ public class login extends HttpServlet {
 		try {
 			Connection con = MyConnection.getConnection();
 			System.out.println("Database is Connected !");
-			PreparedStatement pst = con.prepareStatement("select * from usertables where email = ? and password = ?");
+			 PreparedStatement pst = con.prepareStatement("select * from usertables where email = ? and password = ? and active = '1'");
 			pst.setString(1, email);
 			pst.setString(2, password);
 			ResultSet rs =pst.executeQuery();

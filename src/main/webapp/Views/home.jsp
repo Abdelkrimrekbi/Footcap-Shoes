@@ -202,7 +202,7 @@ if(cart_list!=null){
 	
 	%> 
               
-      <li>
+      <li>               
           <a href="Views/addProduct.jsp">
             <button class="nav-action-btn">
               <ion-icon name="bag-add-outline" aria-hidden="true"></ion-icon>

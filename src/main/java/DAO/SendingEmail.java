@@ -1,8 +1,6 @@
 package DAO;
 
 import java.util.Properties;
-
-
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
@@ -13,18 +11,12 @@ import javax.mail.internet.MimeMessage;
 public class SendingEmail {
     
     private String UserEmail;
-    private String Upassword;
     
-    
-    
-   
-	public SendingEmail(String email, String password) {
-		 this.UserEmail = email;
-	     this.Upassword = password;
-	}
+    public SendingEmail(String email) {
+        this.UserEmail = email;
+    }
 
-
-	public void sendMail() {
+    public void sendMail(String token) {
         String email = "karimerokbi203@gmail.com";
         String password ="kzyzmzgbaliebago";
         Properties properties = new Properties();
@@ -47,7 +39,7 @@ public class SendingEmail {
             message.setSubject("Email verification link");
             
             // Constructing the verification link
-            String verificationLink = "http://localhost:8080/A-PPoject-JEE/ActivateAccounte?key1=" + UserEmail + "&key2=" + Upassword;
+            String verificationLink = "http://localhost:8080/A-PPoject-JEE/ActivateAccounte?email=" + UserEmail + "&token=" + token;
             
             // Setting the message body
             String body = "Your verification link: \n" + verificationLink;
@@ -57,10 +49,5 @@ public class SendingEmail {
         } catch(Exception e) {
             System.out.println("Error occurred while sending email: " + e.getMessage());
         }
-    }
-    
-    public static void main(String[] args) {
-        SendingEmail emailSender = new SendingEmail("recipient@example.com", "password");
-        emailSender.sendMail();
     }
 }
